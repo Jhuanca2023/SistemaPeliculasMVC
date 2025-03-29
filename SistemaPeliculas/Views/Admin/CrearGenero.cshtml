@@ -1,0 +1,12 @@
+﻿@model SistemaPeliculas.Models.Genero
+
+<h1>Crear Género</h1>
+
+<form asp-action="CrearGenero" method="post">
+    <div class="form-group">
+        <label for="Genero1">Género</label>
+        <input type="text" class="form-control" id="Genero1" name="Genero1" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Generos" class="btn btn-secondary">Cancelar</a>
+</form>

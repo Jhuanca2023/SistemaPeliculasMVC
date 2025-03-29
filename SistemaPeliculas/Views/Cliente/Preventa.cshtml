@@ -1,0 +1,111 @@
+﻿@model List<SistemaPeliculas.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "Preventa";
+}
+<div class="video-background">
+    <video autoplay loop muted>
+        <source src="https://cdn.pixabay.com/video/2021/01/18/62241-503297046_large.mp4" type="video/mp4">
+    </video>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <a class="navbar-brand" href="#"><img src="~/images/logoPelis.png" alt="Logo" class="header-logo"></a>
+    <!-- Botón de toggler para pantallas pequeñas -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Elementos de la navbar -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "Cliente")">
+                    <i class="fas fa-home"></i> Inicio
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Cartelera", "Cliente")">
+                    <i class="fas fa-film"></i> Cartelera
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Proximamente", "Cliente")">
+                    <i class="far fa-calendar-alt"></i> Próximamente
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Preventa", "Cliente")">
+                    <i class="fas fa-shopping-cart"></i> Preventa
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i> Mi Cuenta
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Perfil</a>
+                    <a class="dropdown-item" href="#">Configuración</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="@Url.Action("CerrarSesion", "Cliente")">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Carrito", "Cliente")">
+                    <i class="fas fa-shopping-basket"></i> Carrito <span class="badge badge-pill badge-primary">3</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Agregar el icono flotante en una esquina de la pantalla -->
+    <!-- Icono flotante del chatbot -->
+    <div id="chat-icon-container">
+        <i class="fas fa-headset chat-icon"></i>
+    </div>
+
+    <!-- Ventana flotante del chatbot -->
+    <div id="chat-box">
+        <div id="chat-header">
+            <h5>Chatbot</h5>
+            <button id="close-chat">&times;</button>
+        </div>
+        <div id="messages"></div>
+        <div id="chat-input">
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
+            <button id="send-btn">Enviar</button>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5 preventa">
+    <h2>Preventa</h2>
+    <div class="row">
+        @foreach (var pelicula in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card preventa-pelicula">
+                    <img src="@pelicula.Imagen" class="card-img-top" alt="@pelicula.Titulo">
+                    <div class="card-body">
+                        <h5 class="card-title">@pelicula.Titulo</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <form asp-action="AgregarAlCarrito" asp-controller="Cliente" method="post">
+                                <input type="hidden" name="id" value="@pelicula.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Comprar</button>
+                            </form>
+                            <small class="text-muted">@pelicula.Precio.ToString("C")</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+  
+    </div>
+</div>
+<footer class="text-center mt-5">
+    <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p>&copy; 2023 SistemaPeliculas. Todos los derechos reservados.</p>
+</footer>

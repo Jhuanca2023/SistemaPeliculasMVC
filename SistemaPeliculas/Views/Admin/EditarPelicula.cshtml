@@ -1,0 +1,93 @@
+﻿@model SistemaPeliculas.Models.Pelicula
+
+@{
+    ViewData["Title"] = "Editar Película";
+}
+
+<h2>Editar Película</h2>
+
+<h4>Película</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarPelicula" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescripcionCorta" class="control-label"></label>
+                <textarea asp-for="DescripcionCorta" class="form-control"></textarea>
+                <span asp-validation-for="DescripcionCorta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescripcionLarga" class="control-label"></label>
+                <textarea asp-for="DescripcionLarga" class="form-control"></textarea>
+                <span asp-validation-for="DescripcionLarga" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Director" class="control-label"></label>
+                <input asp-for="Director" class="form-control" />
+                <span asp-validation-for="Director" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genero" class="control-label"></label>
+                <input asp-for="Genero" class="form-control" />
+                <span asp-validation-for="Genero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Actor" class="control-label"></label>
+                <input asp-for="Actor" class="form-control" />
+                <span asp-validation-for="Actor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duracion" class="control-label"></label>
+                <input asp-for="Duracion" class="form-control" />
+                <span asp-validation-for="Duracion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Restriccion" class="control-label">Restricción de edad</label>
+                <div>
+                    <input type="radio" asp-for="Restriccion" value="+18" /> +18
+                    <input type="radio" asp-for="Restriccion" value="-18" /> -18
+                </div>
+                <span asp-validation-for="Restriccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Año" class="control-label"></label>
+                <input asp-for="Año" class="form-control" />
+                <span asp-validation-for="Año" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Imagen" class="control-label"></label>
+                <input asp-for="Imagen" class="form-control" />
+                <span asp-validation-for="Imagen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Destacado" class="control-label">¿Destacada?</label>
+                <input asp-for="Destacado" type="checkbox" class="form-check-input" />
+                <span asp-validation-for="Destacado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@model SistemaPeliculas.Models.Actor
+
+<h1>Crear Actor</h1>
+
+<form asp-action="CrearActor" method="post">
+    <div class="form-group">
+        <label for="Actor1">Actor</label>
+        <input type="text" class="form-control" id="Actor1" name="Actor1" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Actores" class="btn btn-secondary">Cancelar</a>
+</form>

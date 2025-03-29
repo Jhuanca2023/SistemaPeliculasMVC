@@ -1,0 +1,90 @@
+﻿@model List<SistemaPeliculas.Models.ReporteCompra>
+
+@{
+    ViewData["Title"] = "Reportes de Compras";
+}
+
+<h1>Reportes de Compras</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No hay reportes de compras disponibles.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <th>Precio Pagado</th>
+        <tr>
+            <th>Película ID</th>
+            <th>Título</th>
+            <th>Cantidad</th>
+            <th>TotalPagado</th>
+            <th>Fecha de Compra</th>
+            
+            <th>Ver Ticket</th>
+            <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reporte in Model)
+            {
+                <tr>
+                    <td>@reporte.PeliculaId</td>
+                    <td>@reporte.PeliculaTitulo</td>
+                    <td>@reporte.Cantidad</td>
+                    <td>@reporte.PrecioPagado.ToString("C")</td>
+                    <td>@reporte.FechaCompra.ToString("g")</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ticketModal_@reporte.Id">
+                            <i class="fas fa-eye"></i> Ver Ticket
+                        </button>
+                        <!-- Modal para mostrar los detalles del ticket -->
+                        <div class="modal fade" id="ticketModal_@reporte.Id" tabindex="-1" role="dialog" aria-labelledby="ticketModalLabel_@reporte.Id" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="ticketModalLabel_@reporte.Id">Detalles del Ticket de Compra</h5>
+                                        <span class="ml-auto">@reporte.FechaCompra.ToString("g")</span> <!-- Fecha de compra en la esquina superior derecha -->
+                                        <!-- Agregar logo al lado derecho -->
+                                        <img src="~/images/logoPelis.png" class="ml-auto" alt="Logo" style="max-height: 100px;">
+                                        <!-- Botón para cerrar el modal -->
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p><strong>Nombre del Cliente:</strong> @reporte.NombreCliente</p>
+                                                <p>------------------------------</p>
+                                                <p><strong>DNI:</strong> @reporte.DNI</p>
+                                                <p>------------------------------</p>
+                                                <p><strong>Dirección:</strong> @reporte.Direccion</p>
+                                                <p>------------------------------</p>
+                                                <p><strong>Película:</strong> @reporte.PeliculaTitulo</p>
+                                                <p>------------------------------</p>
+                                                <p><strong>Cantidad:</strong> @reporte.Cantidad</p>
+                                                <p>------------------------------</p>
+                                                <p><strong>Precio Pagado:</strong> @reporte.PrecioPagado.ToString("C")</p>
+                                            </div>
+                                            <div class="col-6 d-flex justify-content-center align-items-center">
+                                                <img src="~/images/logoPelis.png" alt="Logo Películas" style="max-height: 200px;">
+                                            </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <form asp-action="EliminarReporte" asp-route-id="@reporte.Id" method="post" onsubmit="return confirm('¿Está seguro que desea eliminar este reporte?');">
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

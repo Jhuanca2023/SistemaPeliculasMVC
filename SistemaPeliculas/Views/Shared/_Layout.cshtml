@@ -1,0 +1,778 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Sistema Películas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <header>
+        <style>
+
+            /* Estilo general para centrar el carrusel en la página */
+           
+
+
+            /* Contenedor del carrusel */
+            .proximamente-carousel {
+                margin: 0 auto;
+                max-width: 80%; /* Reduce el ancho total del carrusel */
+            }
+
+            /* Imágenes del carrusel */
+            .proximamente-img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; /* Ajusta la imagen para que se vea completa */
+            }
+
+            /* Contenido del cuerpo */
+            .proximamente-body {
+                display: flex;
+                align-items: center;
+                flex-direction: column; /* Permite alinear texto de manera vertical */
+                justify-content: flex-start; /* Mueve el texto hacia la parte superior */
+                background-color: rgba(0, 0, 0, 0.7); /* Fondo negro transparente */
+                color: #fff;
+                padding: 10px 20px;
+                height: 100%;
+                margin-top: -20px; /* Sube el contenido aún más */
+            }
+
+            .proximamente-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 5px; /* Reduce espacio debajo del título */
+            }
+
+            .proximamente-text {
+                font-size: 1rem;
+                margin-top: 0; /* Asegura que no haya margen superior adicional */
+            }
+
+            /* Ajustar las dimensiones del cuadro */
+            .carousel-item .row {
+                height: 400px; /* Altura ajustada */
+                display: flex;
+                align-items: center;
+                justify-content: center; /* Centra el contenido horizontalmente */
+                margin: 0 auto;
+            }
+
+            /* Ajustar imágenes */
+            .carousel-item img {
+                max-height: 400px; /* Altura máxima de las imágenes */
+                width: auto; /* Ajustar proporcionalmente el ancho */
+                margin: auto; /* Centrar las imágenes */
+                object-fit: contain; /* Hace que la imagen sea visible y completa */
+            }
+
+            /* Reducción del ancho de cada cuadro */
+            .carousel-item .col-md-6 {
+                flex: 0 0 30%; /* Ajusta el ancho al 45% */
+                max-width: 45%;
+                padding: 10px;
+            }
+
+
+           
+
+
+
+
+
+
+
+
+
+            body {
+                padding-top: 56px;
+             
+            }
+
+            .navbar {
+                background-color: rgba(0, 0, 0, 0.4); /* Negro transparente */
+                transition: top 0.3s; /* Animación suave al mostrar/ocultar */
+            }
+
+                .navbar.hidden {
+                    top: -56px; /* Altura de la navbar */
+                }
+
+            .navbar-nav .nav-link {
+                color: white !important; /* Color de las letras del header */
+                font-size: 1.02em; /* Aumentar el tamaño de la letra un 2% */
+            }
+
+                .navbar-nav .nav-link:hover {
+                    color: #524e4e !important; /* Color al pasar el cursor sobre los enlaces */
+                }
+
+            .header-logo {
+                max-height: 80px; /* Ajustar tamaño del logo */
+                margin-left: 90%; /* Mover el logo 90% a la derecha */
+            }
+
+                .header-logo img {
+                    max-height: 100%;
+                    width: auto;
+                    background: transparent; /* Asegura que el fondo del logo sea transparente */
+                }
+
+            .social-icons img {
+                width: 24px;
+                margin-right: 10px;
+            }
+
+            .menu-icon {
+                width: 24px;
+            }
+
+            .carousel-item img {
+                height: 500px;
+                object-fit: cover;
+            }
+
+            .proximamente img {
+                width: 100%;
+                max-height: 400px;
+                object-fit: cover;
+            }
+
+            .venta-pelicula img {
+                width: 100%;
+                height: auto;
+            }
+
+            .video-background {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                overflow: hidden;
+            }
+
+                .video-background video {
+                    min-width: 100%;
+                    min-height: 100%;
+                    width: auto;
+                    height: auto;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: no-repeat center center;
+                    background-size: cover;
+                }
+
+            .preventa .card {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
+
+                .preventa .card img {
+                    flex-grow: 1;
+                    object-fit: cover;
+                }
+
+            .preventa .card-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            /* Estilo general para tarjetas */
+            .card {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+                transition: transform 0.3s ease;
+                background-color: rgba(0, 0, 0, 0.6); /* Negro con 80% de opacidad */
+                color: white; /* Texto en color blanco */
+            }
+
+                /* Estilo para imágenes dentro de tarjetas */
+                .card img {
+                   
+                    
+                    height: 500px; /* Puedes ajustar esta altura según tus necesidades */
+                }
+
+            /* Estilo para el cuerpo de las tarjetas */
+            .card-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 19px;
+                color: white;
+            }
+
+            .card:hover {
+                transform: translateY(-27px); /* Eleva la carta 5px al pasar el cursor */
+                background-color: rgba(0, 0, 0, 0.2); /* Negro con 90% de opacidad */
+            }
+
+            /* Estilo para los títulos de las tarjetas */
+            .card-title {
+                font-size: 1.25rem;
+                font-weight: bold;
+            }
+
+            /* Estilo para los textos de las tarjetas */
+            .card-text {
+                flex-grow: 1;
+                margin-bottom: 10px;
+            }
+
+            /* Estilo para el botón dentro de las tarjetas */
+            .card-body .btn {
+                margin-top: auto;
+            }
+
+            /* Estilo para el modo oscuro */
+            body.dark-mode {
+                background-color: #333;
+                color: #fff; /* Color de texto blanco en modo oscuro */
+            }
+
+            .dark-mode .navbar-light .navbar-nav .nav-link {
+                color: #fff; /* Color de texto blanco para enlaces del menú */
+            }
+
+            
+
+
+
+            /* temas */
+            /* Estilo para el modo claro */
+            body.light-mode {
+                background-color: #fff;
+                color: #333; /* Color de texto negro en modo claro */
+            }
+
+            .light-mode .navbar-light .navbar-nav .nav-link {
+                color: #333; /* Color de texto negro para enlaces del menú */
+            }
+
+            .light-mode .navbar-light .navbar-brand {
+                filter: invert(0); /* Mantiene el color original del logo */
+            }
+            /*chat bot*/
+            /* Estilos para el icono flotante */
+            #chat-icon-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+            }
+
+            .chat-icon {
+                font-size: 32px;
+                color: #007bff;
+                cursor: pointer;
+            }
+
+            /* Estilos para la ventana flotante del chatbot */
+            #chat-box {
+                position: fixed;
+                bottom: 80px;
+                right: 20px;
+                width: 300px;
+                max-height: 400px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                display: none;
+                flex-direction: column;
+            }
+
+            #chat-header {
+                background-color: #007bff;
+                color: #fff;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 8px 8px 0 0;
+            }
+
+                #chat-header h5 {
+                    margin: 0;
+                }
+
+            #close-chat {
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            #messages {
+                flex-grow: 1;
+                padding: 10px;
+                overflow-y: auto;
+            }
+
+            #chat-input {
+                display: flex;
+                padding: 10px;
+                border-top: 1px solid #ccc;
+            }
+
+            #user-input {
+                flex-grow: 1;
+                padding: 5px 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            #send-btn {
+                margin-left: 10px;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 4px;
+                background-color: #007bff;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            .user-msg, .bot-msg {
+                margin: 5px 0;
+            }
+
+            .user-msg {
+                text-align: right;
+            }
+
+            .bot-msg {
+                text-align: left;
+            }
+
+
+    
+
+        </style>
+        <!-- Header content -->
+    </header>
+    <div class="container">
+        @RenderBody()
+        <!-- proximamente  -->
+        <style>
+            .proximamente .col-md-6 {
+                margin-bottom: 20px; /* Espacio entre cada par de imagen y descripción */
+            }
+
+            .proximamente img {
+                max-width: 100%; /* Asegura que las imágenes no excedan su contenedor */
+            }
+
+            .card-img {
+                max-width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            body {
+                height: 100νh;
+                background-color: FSFSFS;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .search {
+                padding: 50px 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+                .search i {
+                    font-size: 25px;
+                    color: #111111;
+                }
+
+            .search-txt {
+                display: flex;
+                align-items: center;
+            }
+
+                .search-txt i {
+                    font-size: 40px;
+                    color: #F8010A;
+                }
+
+                .search-txt h2 {
+                    color: #111111;
+                    font-size: 30px;
+                    margin-left: 10px;
+                }
+
+            .movies {
+                padding: 50px 0 150px 0;
+            }
+
+                .movies h2 {
+                    font-size: 25px;
+                    font-weight: 400;
+                    margin-bottom: 20px;
+                }
+
+            .swiper {
+                width: 100%;
+            }
+
+            .swiper-slide {
+                background-position: center;
+                background-size: cover;
+                width: 250px;
+            }
+
+                .swiper-slide img {
+                    display: block;
+                    width: 100%;
+                }
+
+            .icons {
+                padding: 0 356px 50px 350px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+                .icons i {
+                    font-size: 25px;
+                    color: #111111;
+                    height: 60px;
+                    width: 60px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                    .icons i:hover {
+                        color: #F8010A;
+                        background-color: aliceblue;
+                        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                        cursor: pointer;
+                    }
+
+        </style>
+
+    </div>
+    <footer>
+        <script>
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const videoModal = document.getElementById('videoModal');
+                const videoIframe = document.getElementById('videoIframe');
+
+                videoModal.addEventListener('show.bs.modal', function (event) {
+                    const button = event.relatedTarget; // Botón que disparó el modal
+                    const videoUrl = button.getAttribute('data-url'); // URL del video
+                    videoIframe.src = videoUrl; // Cargar el video en el iframe
+                });
+
+                videoModal.addEventListener('hide.bs.modal', function () {
+                    videoIframe.src = ''; // Limpiar el iframe al cerrar el modal
+                });
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        (function() {
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.navbar');
+
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop) {
+                    // Scroll hacia abajo
+                    navbar.classList.add('hidden');
+                } else {
+                    // Scroll hacia arriba
+                    navbar.classList.remove('hidden');
+                }
+                lastScrollTop = scrollTop;
+            });
+        })();
+
+        ///temas
+            $(document).ready(function () {
+                // Manejo del clic para activar modo oscuro
+                $('#modoOscuro').click(function (e) {
+                    e.preventDefault();
+                    $('body').removeClass('light-mode').addClass('dark-mode');
+                });
+
+                // Manejo del clic para activar modo claro
+                $('#modoClaro').click(function (e) {
+                    e.preventDefault();
+                    $('body').removeClass('dark-mode').addClass('light-mode');
+                });
+            });
+            //chat bot 
+            document.addEventListener('DOMContentLoaded', function () {
+                // Función para abrir o cerrar el cuadro de chat
+                function toggleChat() {
+                    var chatBox = document.getElementById('chat-box');
+                    chatBox.style.display = chatBox.style.display === 'none' ? 'flex' : 'none';
+                }
+
+                // Manejar clic en el icono flotante para abrir el chat
+                document.getElementById('chat-icon-container').addEventListener('click', function () {
+                    toggleChat();
+                });
+
+                // Manejar clic en el botón de cerrar para cerrar el chat
+                document.getElementById('close-chat').addEventListener('click', function () {
+                    toggleChat();
+                });
+
+                // Función para enviar mensajes desde el chat
+                function sendMessage(text) {
+                    var messagesDiv = document.getElementById('messages');
+                    var userMsgDiv = document.createElement('div');
+                    userMsgDiv.classList.add('user-msg');
+                    userMsgDiv.innerText = text;
+                    messagesDiv.appendChild(userMsgDiv);
+
+                    // Simular respuesta del bot
+                    var botResponse = getBotResponse(text);
+                    var botMsgDiv = document.createElement('div');
+                    botMsgDiv.classList.add('bot-msg');
+                    botMsgDiv.innerHTML = botResponse; // Usar innerHTML para permitir imágenes
+                    messagesDiv.appendChild(botMsgDiv);
+
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }
+
+                // Función para determinar la respuesta del bot
+                function getBotResponse(userInput) {
+                    userInput = userInput.toLowerCase();
+                    if (userInput.includes('hola')) {
+                        return "Hola, ¿cómo estás?";
+                    } else if (userInput.includes('bien')) {
+                        return "Me alegra escuchar eso. ¿En qué puedo ayudarte?";
+                    } else if (userInput.includes('hora')) {
+                        return "La hora actual es " + new Date().toLocaleTimeString();
+                    } else if (userInput.includes('próximas películas')) {
+                        return getUpcomingMovies();
+                    } else if (userInput.includes('profesor')) {
+                        return "ALEX MARIN MENDEZ.";
+                    } else if (userInput.includes('curso')) {
+                        return "PROGRAMACION ORIENTADA A OBJETOS II.";
+                    } else if (userInput.includes('guardians of the galaxy')) {
+                        return "Guardians of the Galaxy Vol. 3 es una película emocionante llena de acción y aventura.";
+                    } else if (userInput.includes('black panther')) {
+                        return "Black Panther: Wakanda Forever es una secuela esperada que rinde homenaje al legado de T'Challa.";
+                    } else if (userInput.includes('batman')) {
+                        return "The Batman es una versión más oscura y realista del icónico superhéroe.";
+                    } else if (userInput.includes('jurassic world')) {
+                        return "Jurassic World: Dominion es la última entrega de la saga de dinosaurios que todos conocemos y amamos.";
+                    } else if (userInput.includes('mission: impossible')) {
+                        return "Mission: Impossible 8 promete ser una película llena de acción y suspenso.";
+                    } else if (userInput.includes('thor')) {
+                        return "Thor: Love and Thunder trae de vuelta al dios del trueno en una nueva y emocionante aventura.";
+                    } else if (userInput.includes('doctor strange')) {
+                        return "Doctor Strange in the Multiverse of Madness explora el multiverso con emocionantes giros y sorpresas.";
+                    } else if (userInput.includes('indiana jones')) {
+                        return "Indiana Jones 5 trae de vuelta al legendario arqueólogo en una nueva misión.";
+                    } else if (userInput.includes('top gun')) {
+                        return "Top Gun: Maverick es una secuela esperada que sigue las hazañas de los pilotos de combate.";
+                    }
+                 else if (userInput.includes('contacto')) {
+                    return "Los contactos son estos :Huanca Otiniano Jose con numero de telefono:944234314 - correo:jsoehuanca@gmail.com";
+                    } else if (userInput.includes('ok, gracias')) {
+                        return "No hay porque no dudes cualquier consulta me la haces saber ";
+                    }
+
+                    else if (userInput.includes('como puedo comprar una pelicula')) {
+                        return "dirigete ala barra de navegacion, haz click en preventa y veras todas las peliculas que estan disponibles , luego realizas la compra para generar tu ticket o voleta de pago¡Recuerda siempre reclamar tu bolet de pago!";
+                    } 
+                    else {
+                        return "Lo siento, no entendí tu pregunta. ¿Puedes repetirla?";
+                    }
+                }
+
+
+                // Función para obtener películas próximas
+                function getUpcomingMovies() {
+                    var movies = [
+                        {
+                            title: "Dragon Ball Daima",
+                            image: "~/images/diapo5.jpg"
+                        },
+                        {
+                            title: "Venom 3",
+                            image: "~/images/diapo4.jpg"
+                        },
+                                    {
+                            title: "From",
+                            image: "~/images/diapo3.jpg"
+                        },
+                                    {
+                            title: "Mufasa: El Rey León",
+                            image: "~/images/diapo2.jpg"
+                        }
+                    ];
+
+                    var response = "Estas son las próximas películas:<br>";
+                    movies.forEach(function (movie) {
+                        response += "<strong>" + movie.title + "</strong><br><img src='" + movie.image + "' alt='" + movie.title + "' style='width: 100px;'><br>";
+                    });
+                    return response;
+                }
+
+                // Evento para enviar mensaje cuando se presiona Enter
+                document.getElementById('user-input').addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter') {
+                        sendMessage(this.value.trim());
+                        this.value = '';
+                    }
+                });
+
+                // Evento para enviar mensaje cuando se hace clic en el botón
+                document.getElementById('send-btn').addEventListener('click', function () {
+                    var userInput = document.getElementById('user-input');
+                    sendMessage(userInput.value.trim());
+                    userInput.value = '';
+                });
+            });
+
+                var swiper = new Swiper(".mySwiper", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+                coverflowEffect: {
+                    rotate: 15,
+                    stretch: 0,
+                    depth: 300,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                loop: true,
+            });
+
+
+            //carrito 
+           document.addEventListener("DOMContentLoaded", function () {
+    // Obtener todos los inputs de cantidad
+    const cantidadInputs = document.querySelectorAll(".cantidad-input");
+
+    cantidadInputs.forEach(input => {
+        // Escuchar el evento "input" en cada input de cantidad
+        input.addEventListener("input", function () {
+            const id = this.dataset.id; // ID de la película
+            const precio = parseFloat(this.dataset.precio); // Precio unitario de la película
+            const cantidad = parseInt(this.value) || 1; // Cantidad seleccionada (mínimo 1)
+
+            // Calcular el total de la fila
+            const totalFila = precio * cantidad;
+            document.getElementById(`total-${id}`).innerText = totalFila.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
+
+            // Actualizar el total general
+            actualizarTotalGeneral();
+        });
+    });
+
+    // Función para actualizar el total general
+    function actualizarTotalGeneral() {
+        let totalGeneral = 0;
+
+        cantidadInputs.forEach(input => {
+            const precio = parseFloat(input.dataset.precio);
+            const cantidad = parseInt(input.value) || 1;
+            totalGeneral += precio * cantidad;
+        });
+
+        // Mostrar el total general en el elemento con id "totalAPagar"
+        document.getElementById("totalAPagar").innerText = totalGeneral.toLocaleString('es-PE', { style: 'currency', currency: 'PEN' });
+    }
+});
+
+
+
+
+
+    </script>
+        <style>
+            .social-icons {
+                border-top: 1px solid #ddd;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+
+                /* Estilo para los iconos de las redes sociales */
+                .social-icons a {
+                    display: inline-block;
+                    margin: 0 10px;
+                    color: #555;
+                    font-size: 24px;
+                    text-decoration: none;
+                }
+
+                    .social-icons a:hover {
+                        color: #000;
+                    }
+
+
+        </style>
+
+
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>

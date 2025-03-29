@@ -1,0 +1,12 @@
+﻿@model Actor
+
+<h1>Editar Actor</h1>
+<form asp-action="EditarActor">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Actor1"></label>
+        <input asp-for="Actor1" class="form-control" />
+        <span asp-validation-for="Actor1" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

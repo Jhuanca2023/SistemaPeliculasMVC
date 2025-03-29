@@ -1,0 +1,231 @@
+﻿@model SistemaPeliculas.Models.Usuario
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .login-background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .register-container {
+            width: 600px;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .register-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .register-table td {
+                padding: 10px;
+                vertical-align: top;
+            }
+
+            .register-table label {
+                display: block;
+                color: #ddd;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            .register-table input,
+            .register-table select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.9);
+                font-size: 14px;
+            }
+
+                .register-table input:focus,
+                .register-table select:focus {
+                    border-color: #6a1b9a;
+                    outline: none;
+                    box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
+                }
+
+        .register-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #6a1b9a;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+            .register-button:hover {
+                background-color: #4a1266;
+            }
+
+        .extra-options {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .extra-options a {
+                color: #6a1b9a;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+                .extra-options a:hover {
+                    text-decoration: underline;
+                    color: #4a1266;
+                }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="login-background">
+        <source src="https://cdn.pixabay.com/video/2021/03/19/68410-528670663_large.mp4" type="video/mp4">
+       
+    </video>
+    <div class="register-container">
+        <img src="~/images/logoPelis.png" alt="Logo" class="logo">
+        <h2>Registro</h2>
+        <!-- Mensaje de éxito -->
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @ViewBag.Message
+            </div>
+        }
+        <form asp-action="Register" method="post">
+            <table class="register-table">
+                <tr>
+                    <td>
+                        <label for="Nombre">Nombre</label>
+                        <input type="text" id="Nombre" name="Nombre" value="@Model?.Nombre" required />
+                    </td>
+                    <td>
+                        <label for="Apellido">Apellido</label>
+                        <input type="text" id="Apellido" name="Apellido" value="@Model?.Apellido" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Email">Email</label>
+                        <input type="email" id="Email" name="Email" value="@Model?.Email" required />
+                    </td>
+                    <td>
+                        <label for="Contrasena">Contraseña</label>
+                        <input type="password" id="Contrasena" name="Contrasena" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="EstadoCivil">Estado Civil</label>
+                        <select id="EstadoCivil" name="EstadoCivil" required>
+                            <option value="Soltero">Soltero</option>
+                            <option value="Casado">Casado</option>
+                            <option value="Divorciado">Divorciado</option>
+                            <option value="Viudo">Viudo</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="Ciudad">Ciudad</label>
+                        <input type="text" id="Ciudad" name="Ciudad" value="@Model?.Ciudad" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Departamento">Departamento</label>
+                        <input type="text" id="Departamento" name="Departamento" value="@Model?.Departamento" required />
+                    </td>
+                    <td>
+                        <label for="Provincia">Provincia</label>
+                        <input type="text" id="Provincia" name="Provincia" value="@Model?.Provincia" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Distrito">Distrito</label>
+                        <input type="text" id="Distrito" name="Distrito" value="@Model?.Distrito" required />
+                    </td>
+                    <td>
+                        <label for="DNI">DNI</label>
+                        <input type="text" id="DNI" name="DNI" value="@Model?.DNI" maxlength="8" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="Telefono">Teléfono</label>
+                        <input type="text" id="Telefono" name="Telefono" value="@Model?.Telefono" required />
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" class="register-button">Registrarse</button>
+        </form>
+        <div class="extra-options">
+            <a asp-controller="Account" asp-action="Login">¿Ya tienes una cuenta? Inicia sesión aquí</a>
+        </div>
+    </div>
+
+</body>
+</html>

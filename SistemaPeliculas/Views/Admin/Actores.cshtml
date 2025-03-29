@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SistemaPeliculas.Models.Actor>
+
+<h1>Actores</h1>
+<a asp-action="CrearActor">Crear Nuevo Actor</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Actor</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var actor in Model)
+        {
+            <tr>
+                <td>@actor.Id</td>
+                <td>@actor.Actor1</td>
+                <td>
+                    <a asp-action="EditarActor" asp-route-id="@actor.Id"><i class="fas fa-edit"></i> Editar</a> |
+                    <a asp-action="EliminarActor" asp-route-id="@actor.Id"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

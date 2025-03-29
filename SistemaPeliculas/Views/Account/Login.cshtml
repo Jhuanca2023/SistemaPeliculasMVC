@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Para ocultar el desbordamiento del video */
+        }
+
+        .login-background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover; /* Para asegurar que el video cubra toda la pantalla */
+        }
+
+        .login-container {
+            width: 400px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo negro transparente */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; /* Texto blanco para mejor contraste */
+        }
+
+        .logo {
+            width: 150px; /* Ajusta el tamaño del logo según sea necesario */
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                margin-bottom: 5px;
+                display: block;
+                color: white; /* Texto blanco */
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente para inputs */
+            }
+
+        .remember-me {
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+            .remember-me input {
+                margin-right: 10px;
+            }
+
+        .login-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6a1b9a;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            .login-button:hover {
+                background-color: #582d83;
+            }
+
+        .extra-options {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+            .extra-options a {
+                color: #6a1b9a;
+                text-decoration: none;
+            }
+
+                .extra-options a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="login-background">
+        <source src="https://cdn.pixabay.com/video/2021/03/19/68410-528670663_large.mp4" type="video/mp4"> 
+        Tu navegador no soporta videos HTML5.
+    </video>
+    <div class="login-container">
+        <img src="~/images/logoPelis.png" alt="Logo" class="logo"> 
+        <form asp-action="Login" method="post" class="login-form">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="remember-me">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label for="remember-me">Recordar Datos</label>
+            </div>
+            <button type="submit" class="btn btn-primary login-button">Login</button>
+        </form>
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+        <div class="extra-options">
+            <a href="#">Olvidaste tu contraseña?</a>
+            <a asp-controller="Account" asp-action="Register">Crear Nueva Cuenta</a> 
+        </div>
+
+    </div>
+</body>
+</html>

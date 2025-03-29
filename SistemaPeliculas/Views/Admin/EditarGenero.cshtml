@@ -1,0 +1,12 @@
+﻿@model Genero
+
+<h1>Editar Género</h1>
+<form asp-action="EditarGenero">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Genero1"></label>
+        <input asp-for="Genero1" class="form-control" />
+        <span asp-validation-for="Genero1" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

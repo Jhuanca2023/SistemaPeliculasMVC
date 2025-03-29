@@ -1,0 +1,57 @@
+﻿@model SistemaPeliculas.Models.Pelicula
+
+@{
+    ViewData["Title"] = "Eliminar Película";
+}
+
+<h2>Eliminar Película</h2>
+
+<h4>¿Estás seguro que deseas eliminar esta película?</h4>
+<hr />
+<div>
+    <h4>@Model.Titulo</h4>
+    <dl class="row">
+        <!-- Aquí se muestran los detalles de la película -->
+        <dt class="col-sm-2">Descripción Corta</dt>
+        <dd class="col-sm-10">@Model.DescripcionCorta</dd>
+        <dt class="col-sm-2">Descripción Larga</dt>
+        <dd class="col-sm-10">@Model.DescripcionLarga</dd>
+        <dt class="col-sm-2">Director</dt>
+        <dd class="col-sm-10">@Model.Director</dd>
+        <dt class="col-sm-2">Género</dt>
+        <dd class="col-sm-10">@Model.Genero</dd>
+        <dt class="col-sm-2">Actor</dt>
+        <dd class="col-sm-10">@Model.Actor</dd>
+        <dt class="col-sm-2">Duración</dt>
+        <dd class="col-sm-10">@Model.Duracion</dd>
+        <dt class="col-sm-2">Restricción de Edad</dt>
+        <dd class="col-sm-10">@Model.Restriccion</dd>
+        <dt class="col-sm-2">Rating</dt>
+        <dd class="col-sm-10">@Model.Rating</dd>
+        <dt class="col-sm-2">Año de Estreno</dt>
+        <dd class="col-sm-10">@Model.Año</dd>
+        <dt class="col-sm-2">Precio</dt>
+        <dd class="col-sm-10">@Model.Precio</dd>
+        <dt class="col-sm-2">URL</dt>
+        <dd class="col-sm-10"><a href="@Model.Url" target="_blank">Ver URL</a></dd>
+        <dt class="col-sm-2">Imagen</dt>
+        <dd class="col-sm-10"><img src="@Model.Imagen" alt="Imagen de @Model.Titulo" style="max-width: 200px;" /></dd>
+        <dt class="col-sm-2">Destacado</dt>
+        <dd class="col-sm-10">
+            @if (Model.Destacado)
+            {
+                <span>Sí</span>
+            }
+            else
+            {
+                <span>No</span>
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="EliminarPeliculaConfirmado" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Peliculas" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

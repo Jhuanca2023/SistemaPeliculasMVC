@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SistemaPeliculas.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Gestión de Usuarios";
+}
+
+<h2>Gestión de Usuarios</h2>
+
+<p>
+    <a href="@Url.Action("CrearUsuario")" class="btn btn-primary">Crear Nuevo Usuario</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Email</td>
+                <td>@(item.Rol == 1 ? "Admin" : "Cliente")</td>
+                <td>
+                    <a href="@Url.Action("EditarUsuario", new { id = item.Id })" class="btn btn-warning"><i class="fas fa-edit"></i> Editar</a> |
+                    <a href="@Url.Action("EliminarUsuario", new { id = item.Id })" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

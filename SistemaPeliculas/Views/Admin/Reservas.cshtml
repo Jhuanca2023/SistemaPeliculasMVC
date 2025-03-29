@@ -1,0 +1,27 @@
+﻿<h2>Reservas de Clientes</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pelicula</th>
+            <th>Correo</th>
+            <th>Fecha de Reserva</th>
+            <th>Notificar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.Pelicula.Titulo</td>
+                <td>@reserva.CorreoCliente</td>
+                <td>@reserva.FechaReserva.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <!-- Enlace que llama a la acción EnviarNotificacion y pasa el correo -->
+                    <a href="@Url.Action("EnviarNotificacion", "Admin", new { correo = reserva.CorreoCliente })">
+                        <i class="fas fa-bell"></i> Notificar
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

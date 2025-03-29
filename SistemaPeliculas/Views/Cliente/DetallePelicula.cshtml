@@ -1,0 +1,13 @@
+﻿@model SistemaPeliculas.Models.Pelicula
+
+<h2>@Model.Titulo (@Model.Año)</h2>
+<img src="@Model.Imagen" alt="@Model.Titulo" />
+<p>@Model.DescripcionCorta</p>
+<p>Director: @Model.Director</p>
+<p>Genero: @Model.Genero</p>
+<p>Actor: @Model.Actor</p>
+<p>Restricción: @Model.Restriccion</p>
+<p>Rating: @Model.Rating</p>
+<a href="@Model.Url">Ver Trailer</a>
+<p>Precio: @Model.Precio</p>
+<a href="#">Comprar</a>

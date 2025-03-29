@@ -1,0 +1,26 @@
+﻿    @model IEnumerable<Restriccion>
+
+    <h1>Restricciones</h1>
+    <a asp-action="CrearRestriccion">Crear Nueva Restricción</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Restricción</th> <!-- Cambio de Descripcion a Restricción -->
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var restriccion in Model)
+            {
+                <tr>
+                    <td>@restriccion.Id</td>
+                    <td>@restriccion.Restriccion1</td> <!-- Cambio de Descripcion a Restricción -->
+                <td>
+                    <a asp-action="EditarRestriccion" asp-route-id="@restriccion.Id"><i class="fas fa-edit"></i> Editar</a> |
+                    <a asp-action="EliminarRestriccion" asp-route-id="@restriccion.Id"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>

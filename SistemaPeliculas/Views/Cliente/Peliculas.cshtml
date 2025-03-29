@@ -1,0 +1,16 @@
+﻿@model IEnumerable<SistemaPeliculas.Models.Pelicula>
+
+<h2>Películas</h2>
+<div id="listaPeliculas">
+    @foreach (var pelicula in Model)
+    {
+        <div class="pelicula">
+            <img src="@pelicula.Imagen" alt="@pelicula.Titulo" />
+            <h3>@pelicula.Titulo (@pelicula.Año)</h3>
+            <p>@pelicula.DescripcionCorta</p>
+            <a href="@Url.Action("DetallePelicula", new { id = pelicula.Id })">Ver Trailer</a>
+            <p>Precio: @pelicula.Precio</p>
+            <a href="#">Comprar</a>
+        </div>
+    }
+    }

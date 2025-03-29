@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SistemaPeliculas.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "Películas";
+}
+
+<h2>Películas</h2>
+
+<p>
+    <a asp-action="CrearPelicula" class="btn btn-primary">Crear Nueva Película</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Descripcion Corta</th>
+            <th>Genero</th>
+            <th>Actor</th>
+            <th>Año</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.DescripcionCorta</td>
+                <td>@item.Genero</td>
+                <td>@item.Actor</td>
+                <td>@item.Año</td>
+                <td>@item.Precio</td>
+                <td>
+                    <a asp-action="EditarPelicula" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i>Editar</a>
+                    <a asp-action="EliminarPelicula" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i>Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

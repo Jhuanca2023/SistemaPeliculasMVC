@@ -1,0 +1,16 @@
+﻿@model Restriccion
+
+<h1>Eliminar Restricción</h1>
+<form asp-action="EliminarRestriccion">
+    <div>
+        <h4>¿Estás seguro de que quieres eliminar esta restricción?</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Restricción</dt>
+            <dd>@Model.Restriccion1</dd>
+        </dl>
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button> |
+        <a asp-action="Restricciones">Cancelar</a>
+    </div>
+</form>

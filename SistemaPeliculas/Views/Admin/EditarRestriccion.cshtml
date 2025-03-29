@@ -1,0 +1,12 @@
+﻿@model Restriccion
+
+<h1>Editar Restricción</h1>
+<form asp-action="EditarRestriccion">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Restriccion1"></label>
+        <input asp-for="Restriccion1" class="form-control" />
+        <span asp-validation-for="Restriccion1" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

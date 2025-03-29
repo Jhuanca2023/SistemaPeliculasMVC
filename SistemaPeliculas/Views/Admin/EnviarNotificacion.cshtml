@@ -1,0 +1,16 @@
+﻿@model SistemaPeliculas.Models.ErrorViewModel
+
+<h2>Resultado de la notificación</h2>
+
+@if (Model != null && !string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-success">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Error al enviar la notificación.
+    </div>
+}

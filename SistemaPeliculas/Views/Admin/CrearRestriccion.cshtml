@@ -1,0 +1,12 @@
+﻿@model SistemaPeliculas.Models.Restriccion
+
+<h1>Crear Restricción</h1>
+
+<form asp-action="CrearRestriccion" method="post">
+    <div class="form-group">
+        <label for="Restriccion1">Restricción</label>
+        <input type="text" class="form-control" id="Restriccion1" name="Restriccion1" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Restricciones" class="btn btn-secondary">Cancelar</a>
+</form>

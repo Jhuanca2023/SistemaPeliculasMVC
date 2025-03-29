@@ -1,0 +1,288 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Life Play System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .header {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Fondo negro transparente */
+            color: #fff;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .header h1 {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                flex: 1;
+            }
+
+        .open-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 70px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(0, 0, 0, 0.7); /* Fondo negro transparente */
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+            left: -250px;
+            transition: left 0.3s ease;
+        }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .sidebar img {
+                max-width: 70%;
+                cursor: pointer;
+            }
+
+            .sidebar a {
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                padding: 10px 0;
+                transition: background 0.3s;
+            }
+
+                .sidebar a:hover {
+                    background: rgba(26, 188, 156, 0.7);
+                    padding-left: 10px;
+                }
+
+        .content {
+            margin-left: 0;
+            margin-top: 50px;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: margin-left 0.3s ease;
+            background: rgba(0, 0, 0, 0.7); /* Fondo negro transparente */
+        }
+
+            .content.shifted {
+                margin-left: 250px;
+            }
+
+        .btn {
+            flex: 1 1 calc(33.333% - 20px);
+            display: inline-block;
+            padding: 15px 30px;
+            color: #fff;
+            background: #2980b9;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+            .btn:hover {
+                background: #3498db;
+            }
+
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+
+        .container1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .circle-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo negro transparente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .circle img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .description {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 30px;
+            color: #fff;
+        }
+
+            .description p {
+                margin: 0 auto;
+                max-width: 800px; /* Ajusta el ancho máximo según tu diseño */
+                text-align: justify; /* Ajusta la alineación del texto */
+            }
+
+        .whatsapp-icon {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        /*logo*/
+
+        .sidebar .logo {
+            width: 80px; /* Ajusta el tamaño del logo */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /*tema*/
+
+    </style>
+</head>
+<body>
+    <video autoplay muted loop class="video-background">
+        <source src="https://cdn.pixabay.com/video/2021/05/25/75169-555034894_large.mp4" type="video/mp4">
+    </video>
+
+    <div class="header">
+        <button class="open-btn" onclick="toggleSidebar()">☰</button>
+        <h1>Sistema Administrador</h1>
+        <li class="nav-item">
+            <a class="nav-link" href="#" id="toggleModo" onclick="toggleModo()">
+                <i class="fas fa-adjust" id="modoIcon"></i>
+            </a>
+        </li>
+
+    </div>
+
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <img src="~/images/logoPelis.png" alt="Logo" onclick="window.location.href='@Url.Action("Index")'">
+            <a href="@Url.Action("Peliculas")" target="content-frame" onclick="resetContent()">Gestionar Películas</a>
+            <a href="@Url.Action("Usuarios")" target="content-frame" onclick="resetContent()">Gestionar Usuarios</a>
+            <a href="@Url.Action("Generos")" target="content-frame" onclick="resetContent()">Gestionar Géneros</a>
+            <a href="@Url.Action("Actores")" target="content-frame" onclick="resetContent()">Gestionar Actores</a>
+            <a href="@Url.Action("Restricciones")" target="content-frame" onclick="resetContent()">Gestionar Restricciones</a>
+            <a href="@Url.Action("Reportes")" target="content-frame" onclick="resetContent()">Ver Reportes</a>
+             <a href="@Url.Action("Reservas")" target="content-frame" onclick="resetContent()">Ver Reservas</a>
+            <a href="@Url.Action("Logout", "Account")">Cerrar Sesión</a>
+        </div>
+        <div class="content" id="content">
+            <h2>DESARROLLADOR👨‍💻</h2>
+            <div class="container1">
+                <div class="circle-container">
+                    <div>
+                        <div class="circle">
+                            <img src="/images/" alt="">
+                        </div>
+                        <div class="name">Huanca Otiniano Jose</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description">
+                <p>
+                    El proyecto está desarrollado por un jóven estudiante apasionado por la tecnología,
+                    Huanca Otiniano Jose . Como estudiante de Cibertec,
+                    he combinado mi habilidad en backend y frontend para crear una solución integral.
+                    Utilizamos HTML, CSS y JavaScript, Bostrapp, SqlServer para la lógica de la interfaz de usuario y funcionalidad,
+                    Como Herramienta clave utilice C# para el desarrollo de la aplicación.
+                    Me especialice en la creación de soluciones innovadoras y eficientes,
+                    aplicando principios de diseño ágil y metodologías de desarrollo modernas.
+                    Además, utilice herramientas avanzadas para la gestión de proyectos y el control de versiones,
+                    asegurando una colaboración efectiva y un desarrollo continuo. Nuestro objetivo
+                    es ofrecer aplicaciones de alta calidad que optimicen los procesos y faciliten la gestión de Peliculas.
+                </p>
+            </div>
+            <div class="description">
+                <i class="fab fa-whatsapp whatsapp-icon"></i> ¡Conoce más sobre nosotros!
+            </div>
+            <iframe name="content-frame"></iframe>
+            <a href="@Url.Action("Reportes")" target="content-frame" onclick="resetContent()">Ver Reportes</a>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('content').classList.toggle('shifted');
+        }
+
+        function resetContent() {
+            document.querySelector('iframe[name="content-frame"]').contentWindow.location.reload();
+        }
+
+        window.onload = function () {
+            setTimeout(function () {
+                var descriptions = document.getElementsByClassName('description');
+                for (var i = 0; i < descriptions.length; i++) {
+                    descriptions[i].style.display = 'none';
+                }
+            }, 10000); // 10 segundos
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿@model Genero
+
+<h1>Eliminar Género</h1>
+<form asp-action="EliminarGenero">
+    <div>
+        <h4>¿Estás seguro de que quieres eliminar este género?</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Descripción</dt>
+            <dd>@Model.Genero1</dd>
+        </dl>
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button> |
+        <a asp-action="Generos">Cancelar</a>
+    </div>
+</form>

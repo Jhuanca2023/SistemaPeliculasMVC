@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Genero>
+
+<h1>Géneros</h1>
+<a asp-action="CrearGenero">Crear Nuevo Género</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Género</th> <!-- Cambio de Descripcion a Género -->
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var genero in Model)
+        {
+            <tr>
+                <td>@genero.Id</td>
+                <td>@genero.Genero1</td> <!-- Cambio de Descripcion a Género -->
+                <td>
+                    <a asp-action="EditarGenero" asp-route-id="@genero.Id"><i class="fas fa-edit"></i> Editar</a> |
+                    <a asp-action="EliminarGenero" asp-route-id="@genero.Id"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
